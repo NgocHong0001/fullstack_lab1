@@ -1,20 +1,24 @@
 {
   "name": "lab1",
   "version": "1.0.0",
-  "type": "module",
   "main": "index.js",
-
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "This is a simple Node.js application that connects to a MongoDB database and serves as a RESTful API. It uses Express for routing and CORS for cross-origin resource sharing. The application is designed to be run in development mode using nodemon, which automatically restarts the server when file changes are detected.",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "mongodb": "^6.15.0"
+    "mongodb": "^6.15.0",
+    "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
