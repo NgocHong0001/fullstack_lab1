@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "This is a simple Node.js application that connects to a MongoDB database and serves as a RESTful API. It uses Express for routing and CORS for cross-origin resource sharing. The application is designed to be run in development mode using nodemon, which automatically restarts the server when file changes are detected.",
+  "description": "This is a simple web-application collecting recipies through fetching data from mongoDB via api.",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",

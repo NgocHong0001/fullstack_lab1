@@ -7,10 +7,9 @@ const dishSchema = new mongoose.Schema({
   preparationSteps: String,
   cookingTime: Number,
   origin: String,
-  spiceLevel: String,    
-  servings: Number,       
-  difficulty: String        
+  spiceLevel: String,        
 });
 
-const Dish = mongoose.model('Dish', dishSchema);
+const Dish = mongoose.model('Dish', dishSchema); // Create a model called Dish using the schema dishSchema, mongoose auto-pluralize & lowecase the model name to dishes in lab1.
+
 export default Dish;

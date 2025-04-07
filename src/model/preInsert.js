@@ -21,7 +21,6 @@ const dishesData = [
     preparationSteps: "Boil pasta, cook sauce, combine.",
     cookingTime: 30,
     origin: "Italy",
-    difficulty: "Easy"
   },
   {
     id: 3,
@@ -30,7 +29,6 @@ const dishesData = [
     preparationSteps: "Prepare rice, assemble with fillings, roll and slice.",
     cookingTime: 50,
     origin: "Japan",
-    servings: 2
   },
   {
     id: 4,
@@ -48,13 +46,18 @@ const dishesData = [
     preparationSteps: "Slice vegetables, layer in pan, bake.",
     cookingTime: 45,
     origin: "France",
-    difficulty: "Medium"
   }
 ];
 
 const insertDishes = async () => {
   try {
     await connectDB(); // Connect via db.js
+
+    const alreadyExists = await Dish.findOne();
+    if (alreadyExists) {
+    console.log("⚠️ Dishes already exist. Skipping insert.");
+    process.exit();
+    }
 
     const insertedDishes = await Dish.insertMany(dishesData, {ordered: false}); // insert, if some fail continue with the rest.
     insertedDishes.forEach((dish) => {
@@ -74,6 +77,7 @@ const insertDishes = async () => {
   } finally {
     process.exit(); // end script after insertion
   }
+
 };
 
 insertDishes(); //to run this script: node src/model/preInsert.js
