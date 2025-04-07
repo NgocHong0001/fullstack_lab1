@@ -1,11 +1,8 @@
-// insertD.js
 import dotenv from 'dotenv';
-import { MongoClient } from 'mongodb';
+import { connectDB } from '../../config/db.js';
+import Dish from './dishObj.js';
 
 dotenv.config();
-
-const uri = process.env.CONNECTION_URL;
-const client = new MongoClient(uri);
 
 const dishesData = [
   {
@@ -55,22 +52,28 @@ const dishesData = [
   }
 ];
 
-async function run() {
+const insertDishes = async () => {
   try {
-    await client.connect();
-    const db = client.db("lab1");
-    const dish = db.collection("dish");
+    await connectDB(); // Connect via db.js
 
-    //const result = await dish.insertMany(dishesData); check if this is connected to mongodb atlas
-
-    dishesData.forEach((dish) => {
-      console.log(`✅ Inserted ${dish.name} successfully!`);
+    const insertedDishes = await Dish.insertMany(dishesData, {ordered: false}); // insert, if some fail continue with the rest.
+    insertedDishes.forEach((dish) => {
+      console.log(`✅ Inserted: ${dish.name}`);
     });
+    
   } catch (error) {
-    console.error("❌ Error inserting dishes:", error);
+    console.error("❌ Some dishes could not be inserted:");
+    if (error.writeErrors) {
+      error.writeErrors.forEach((err) => {
+        console.error(`- ❌ Failed to insert: ${err.err.op.name}`); // name of the dish that failed to insert
+        console.error(`  ↳ Reason: ${err.err.errmsg || err.err.message}`); // error message & reason for failure
+      });
+    } else {
+      console.error("Unexpected error:", error.message); // handle other errors
+    }
   } finally {
-    await client.close();
+    process.exit(); // end script after insertion
   }
-}
+};
 
-run(); //to run this script: node src/model/insertD.js
+insertDishes(); //to run this script: node src/model/preInsert.js
