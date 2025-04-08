@@ -4,6 +4,7 @@ import mongooseSequence from 'mongoose-sequence';// Import the mongoose-sequence
 const AutoIncrement = mongooseSequence(mongoose);
 
 const dishSchema = new mongoose.Schema({
+  id: { type: Number, unique: true }, // Auto-incremented field
   name: String,
   ingredients: [String],
   preparationSteps: String,

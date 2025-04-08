@@ -89,8 +89,8 @@ app.put('/api/dishes/:id', async (req, res) => {
 
 //DELETE dish by ID
 app.delete('/api/dishes/:id', async (req, res) => {
-  const { id } = req.params;
-  const deleted = await Dish.findByIdAndDelete(id);
+  const { id } = Number(req.params);
+  const deleted = await Dish.findOneAndDelete({ id });
 
   if (!deleted) {
     return res.status(404).json({ message: 'Dish not found' });
