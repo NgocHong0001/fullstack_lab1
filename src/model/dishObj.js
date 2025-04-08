@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
+import mongooseSequence from 'mongoose-sequence';// Import the mongoose-sequence plugin, for auto incr. id field
+
+const AutoIncrement = mongooseSequence(mongoose);
 
 const dishSchema = new mongoose.Schema({
-  id: Number,
   name: String,
   ingredients: [String],
   preparationSteps: String,
@@ -9,6 +11,9 @@ const dishSchema = new mongoose.Schema({
   origin: String,
   spiceLevel: String,        
 });
+
+// Auto-increment `id` field
+dishSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
 const Dish = mongoose.model('Dish', dishSchema); // Create a model called Dish using the schema dishSchema, mongoose auto-pluralize & lowecase the model name to dishes in lab1.
 

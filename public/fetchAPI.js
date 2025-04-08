@@ -14,7 +14,7 @@ async function loadDishes() {
         <td>${dish.preparationSteps}</td>
         <td>${dish.cookingTime}</td>
         <td>${dish.origin}</td>
-        <td>${dish.spiceLevel || dish.difficulty || dish.servings || '-'}</td>
+        <td>${dish.spiceLevel || '-'}</td>
         <td><button>Update</button></td>
         <td><button>Delete</button></td>
       `;
@@ -25,5 +25,4 @@ async function loadDishes() {
   }
 }
 
-// Run it when the page loads
 window.addEventListener('DOMContentLoaded', loadDishes);
