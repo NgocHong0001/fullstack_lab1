@@ -1,5 +1,4 @@
 //fetch dishes fr. API and display in table
-// CRUD operations for dishes UI
 async function loadDishes() {
   try {
     const res = await fetch('/api/dishes');
@@ -29,6 +28,7 @@ async function loadDishes() {
 
 }
 
+// CRUD operations for dishes UI
 async function deleteDish(id) {
   if (confirm("Are you sure you want to delete this dish?")) {
     const res = await fetch(`/api/dishes/${id}`, { method: 'DELETE' });

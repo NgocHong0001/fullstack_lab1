@@ -87,10 +87,14 @@ form input {
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+
 }
 
 form button {
-  grid-column: span 2;
+  grid-column: span 3;
   background-color: #28a745;
   color: white;
+  padding: 0.6rem;
+  width: 50%;
+  justify-self: center;
 }
