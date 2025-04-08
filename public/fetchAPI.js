@@ -24,7 +24,7 @@ async function loadDishes() {
     });
 
   } catch (err) {
-    console.error('❌ Error fetching dishes:', err);
+    console.error('Error fetching dishes:', err);
   }
 
 }
@@ -104,12 +104,12 @@ document.getElementById('addDishForm').addEventListener('submit', async (e) => {
   });
 
   if (res.ok) {
-    alert("✅ Dish added!");
-    form.reset();
-    loadDishes();
+    alert("Dish added!");
+    form.reset(); // clear the input fields
+    loadDishes(); // reload the table w/ updated data
   } else {
     const error = await res.json();
-    alert("❌ Failed to add dish: " + error.message);
+    alert("Failed to add dish: " + error.message);
   }
 });
 
