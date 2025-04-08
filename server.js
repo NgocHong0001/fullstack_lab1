@@ -20,7 +20,7 @@ try {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(express.json()); // Makes sure Express can read JSON data, req.body
+app.use(express.json()); // Makes sure Express can read JSON data, req.body, (middleware))
 
  // path for incoming files
 const __filename = fileURLToPath(import.meta.url); //meta:url: gives url to the current file, turn tht url into path.
@@ -74,9 +74,9 @@ app.post('/api/dishes', async (req, res) => {
 
 //PUT update dish by ID
 app.put('/api/dishes/:id', async (req, res) => {
-  const { id } = req.params;
+  const id = Number(req.params.id);
   const updated = await Dish.findOneAndUpdate(
-    { id: Number(id) },    // using findOneAndUpdate to find the dish by id and update it instead of findByIdAndUpdate coz we would get a long string of id, not the number.
+    { id },    // using findOneAndUpdate to find the dish by  custom id and update it instead of findByIdAndUpdate coz we would get a long string of id, not the number.
     req.body,
     { new: true } // return the updated document
   );
@@ -89,7 +89,7 @@ app.put('/api/dishes/:id', async (req, res) => {
 
 //DELETE dish by ID
 app.delete('/api/dishes/:id', async (req, res) => {
-  const { id } = Number(req.params);
+  const id = Number(req.params.id);
   const deleted = await Dish.findOneAndDelete({ id });
 
   if (!deleted) {

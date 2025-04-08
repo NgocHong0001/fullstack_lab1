@@ -29,6 +29,17 @@
     </tbody>
   </table>
 
+  <h2>Add New Dish</h2>
+  <form id="addDishForm">
+    <input name="name" placeholder="Name" required>
+    <input name="ingredients" placeholder="Ingredients (comma-separated)" required>
+    <input name="preparationSteps" placeholder="Steps" required>
+    <input name="cookingTime" type="number" placeholder="Time (min)" required>
+    <input name="origin" placeholder="Origin" required>
+    <input name="spiceLevel" placeholder="Spice level (optional)">
+    <button type="submit">Add Dish</button>
+  </form>
+
   <script src="fetchAPI.js"></script>
 </body>
 </html>
