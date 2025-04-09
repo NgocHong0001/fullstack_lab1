@@ -41,6 +41,7 @@ async function deleteDish(id) {
   }
 }
 
+// ... aka spread operator, Convert NodeList to real array so we can use .find() and .map()
 function editDish(id) {
   const row = [...document.querySelectorAll('#recipeTable tbody tr')]
     .find(r => r.querySelector(`button[onclick="editDish(${id})"]`));
@@ -48,13 +49,14 @@ function editDish(id) {
   const cells = row.querySelectorAll('td');
   const original = [...cells].map(cell => cell.textContent);
 
+  //{original[]} array to get original values
   row.innerHTML = `
-    <td><input value="${original[0]}" id="edit-name-${id}"></td>
-    <td><input value="${original[1]}" id="edit-ing-${id}"></td>
-    <td><input value="${original[2]}" id="edit-steps-${id}"></td>
-    <td><input value="${original[3]}" id="edit-time-${id}" type="number"></td>
-    <td><input value="${original[4]}" id="edit-origin-${id}"></td>
-    <td><input value="${original[5]}" id="edit-spice-${id}"></td>
+    <td><input value="${original[0]}" id="editName${id}"></td> 
+    <td><input value="${original[1]}" id="editIng${id}"></td>
+    <td><input value="${original[2]}" id="editSteps${id}"></td>
+    <td><input value="${original[3]}" id="editTime${id}" type="number"></td>
+    <td><input value="${original[4]}" id="editOrigin${id}"></td>
+    <td><input value="${original[5]}" id="editSpice${id}"></td>
     <td><button onclick="submitUpdate(${id})">Save</button></td>
     <td><button onclick="loadDishes()">Cancel</button></td>
   `;

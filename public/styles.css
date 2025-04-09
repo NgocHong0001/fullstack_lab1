@@ -33,7 +33,7 @@ td input {
   width: 100%;
   padding: 0.4rem;
   font-size: 0.9rem;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc; /* input border */
   border-radius: 4px;
 }
 

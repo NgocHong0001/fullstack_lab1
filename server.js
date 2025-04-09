@@ -13,7 +13,7 @@ try {
   await connectDB(); // connect to the database
   console.log('Connected to MongoDB!');
 } catch (err) {
-  console.error('❌ DB connection failed:', err.message);
+  console.error('DB connection failed:', err.message);
   process.exit(1); // stops app if failed!
 }
 
