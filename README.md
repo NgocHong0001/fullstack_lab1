@@ -1,4 +1,4 @@
-# 🍽️ Lab 1: Fullstack Recipe App
+# 🍽️ Lab 1: Fullstack Recipe App 🍽️
 
 This project is a simple fullstack web application for managing a list of dishes. It uses Node.js, Express, MongoDB (Atlas), and vanilla JavaScript (no frontend framework).
 
