@@ -76,7 +76,7 @@ app.post('/api/dishes', async (req, res) => {
 app.put('/api/dishes/:id', async (req, res) => {
   const id = Number(req.params.id);
   const updated = await Dish.findOneAndUpdate(
-    { id },    // using findOneAndUpdate to find the dish by  custom id and update it instead of findByIdAndUpdate coz we would get a long string of id, not the number.
+    { id },    // using findOneAndUpdate to find the dish by custom id and update it instead of findByIdAndUpdate coz we would get a long string of id, not the number.
     req.body,
     { new: true } // return the updated document
   );
@@ -101,7 +101,6 @@ app.delete('/api/dishes/:id', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
-
 
 // node src/server.js
 //http://localhost:5000

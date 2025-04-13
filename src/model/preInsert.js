@@ -55,20 +55,20 @@ const insertDishes = async () => {
 
     const alreadyExists = await Dish.findOne();
     if (alreadyExists) {
-    console.log("⚠️ Dishes already exist. Skipping insert.");
+    console.log("Dishes already exist. Skipping insert.");
     process.exit();
     }
 
     const insertedDishes = await Dish.insertMany(dishesData, {ordered: false}); // insert, if some fail continue with the rest.
     insertedDishes.forEach((dish) => {
-      console.log(`✅ Inserted: ${dish.name}`);
+      console.log(`Inserted: ${dish.name}`);
     });
-    
+   
   } catch (error) {
-    console.error("❌ Some dishes could not be inserted:");
+    console.error("Some dishes could not be inserted:");
     if (error.writeErrors) {
       error.writeErrors.forEach((err) => {
-        console.error(`- ❌ Failed to insert: ${err.err.op.name}`); // name of the dish that failed to insert
+        console.error(`- Failed to insert: ${err.err.op.name}`); // name of the dish that failed to insert
         console.error(`  ↳ Reason: ${err.err.errmsg || err.err.message}`); // error message & reason for failure
       });
     } else {
@@ -79,5 +79,6 @@ const insertDishes = async () => {
   }
 
 };
+
 
 insertDishes(); //to run this script: node src/model/preInsert.js

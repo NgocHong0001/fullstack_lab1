@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
+// Connect to MongoDB using Mongoose setup
 export const connectDB = async () => {
   try {
     const connection = await mongoose.connect(process.env.CONNECTION_URL, {});

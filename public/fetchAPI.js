@@ -43,13 +43,13 @@ async function deleteDish(id) {
 
 // ... aka spread operator, Convert NodeList to real array so we can use .find() and .map()
 function editDish(id) {
-  const row = [...document.querySelectorAll('#recipeTable tbody tr')]
+  const row = [...document.querySelectorAll('#recipeTable tbody tr')] //find the row of the dish to edit w/ edit button
     .find(r => r.querySelector(`button[onclick="editDish(${id})"]`));
 
   const cells = row.querySelectorAll('td');
-  const original = [...cells].map(cell => cell.textContent);
+  const original = [...cells].map(cell => cell.textContent); //turns cell into array and grabs the text content of each cell
 
-  //{original[]} array to get original values
+  //{original[]} array to get original values, & replace the whole row with inputs fileds with pre-filled values fr. original values.
   row.innerHTML = `
     <td><input value="${original[0]}" id="editName${id}"></td> 
     <td><input value="${original[1]}" id="editIng${id}"></td>
@@ -62,14 +62,16 @@ function editDish(id) {
   `;
 }
 
+//* This function is called when the user clicks the "Save" button after editing a dish.
+//* It collects the updated values from the input fields and sends them to the server using a PUT request.
 async function submitUpdate(id) {
   const updatedDish = {
-    name: document.getElementById(`edit-name-${id}`).value,
-    ingredients: document.getElementById(`edit-ing-${id}`).value.split(',').map(x => x.trim()),
-    preparationSteps: document.getElementById(`edit-steps-${id}`).value,
-    cookingTime: Number(document.getElementById(`edit-time-${id}`).value),
-    origin: document.getElementById(`edit-origin-${id}`).value,
-    spiceLevel: document.getElementById(`edit-spice-${id}`).value
+    name: document.getElementById(`editName${id}`).value,
+  ingredients: document.getElementById(`editIng${id}`).value.split(',').map(x => x.trim()),
+  preparationSteps: document.getElementById(`editSteps${id}`).value,
+  cookingTime: Number(document.getElementById(`editTime${id}`).value),
+  origin: document.getElementById(`editOrigin${id}`).value,
+  spiceLevel: document.getElementById(`editSpice${id}`).value
   };
 
   const res = await fetch(`/api/dishes/${id}`, {
@@ -86,9 +88,10 @@ async function submitUpdate(id) {
   }
 }
 
+//Add new dish
 document.getElementById('addDishForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const form = e.target;
+  e.preventDefault(); //prevent refreshing the page when the form is submitted
+  const form = e.target; // get the form element itself
 
   const newDish = {
     name: form.name.value,

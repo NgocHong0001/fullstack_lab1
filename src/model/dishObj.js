@@ -18,4 +18,5 @@ dishSchema.plugin(AutoIncrement, { inc_field: 'id' });
 
 const Dish = mongoose.model('Dish', dishSchema); // Create a model called Dish using the schema dishSchema, mongoose auto-pluralize & lowecase the model name to dishes in lab1.
 
+
 export default Dish;
